@@ -4,7 +4,22 @@ body{
     background-image: url(http://untroubled.org/backgrounds/space/stars.gif);
     margin: 0;
     color: white;
-};
-.Cardpeople{
-   
+}
+
+h1{
+    animation: derecha-izquierda 1s;
+}
+@keyframes derecha-izquierda  {
+
+    from{
+        transform: translateX(-10000px);
+    }
+    to{
+        transform:rotateX(0px)
+    }
+    
+}
+
+img{
+    box-shadow: 0 4px 8px 0 rgba(248, 247, 247, 0.76), 0 6px 20px 0 rgba(255, 240, 240, 0.925);
 }

@@ -18,6 +18,9 @@ export const Home = () => {
       const chararter = await getServices.getPropiertiesPeople(id);
       allPeople.push({ ...chararter, uid: id });
     }
+
+    dispatch({ type: "add_people", people: allPeople });
+
     setListPeople(allPeople);
   };
 
@@ -31,6 +34,9 @@ export const Home = () => {
       const planett = await getServices.getPropiertiesPlanets(id);
       allPlanets.push({ ...planett, uid: id });
     }
+
+    dispatch({ type: "add_planets", planets: allPlanets });
+
     setListPlanets(allPlanets);
   };
 
@@ -39,11 +45,14 @@ export const Home = () => {
   const handelListVehicles = async () => {
     const allVehicles = [];
     const resultsVehicles = await getServices.getVehicles();
-    for (let k = 0; k < resultsVehicles.length; k++) {
+    for (let k = 4; k < resultsVehicles.length; k++) {
       const id = resultsVehicles[k].uid;
       const vehicle = await getServices.getPropiertiesVehicles(id);
       allVehicles.push({ ...vehicle, uid: id });
     }
+
+    dispatch({ type: "add_vehicles", vehicles: allVehicles });
+
     setListVehicles(allVehicles);
   };
 
@@ -55,11 +64,11 @@ export const Home = () => {
 
   return (
     <div>
-      <div className="container text-center mt-5 ">
-        <h1>STAR WARS</h1>
-        <div className="card-group  overflow-hidden">
+      <div className="container text-center overflow   fs-1 ">
+        <h1 className="title-page m-5">¡QUE LA FUERZA TE ACOMPAÑE!</h1>
+        <div className="card-group ">
           <div className="row">
-            <h2>Charactres</h2>
+            <h2 className="title-characters  text-center">CHARACTTRES</h2>
             {listpeople.map((people) => {
               return (
                 <CardPeople
@@ -71,11 +80,11 @@ export const Home = () => {
                 />
               );
             })}
-            ;
+
             <div>
-              <div className="card-group  overflow-hidden">
-                <div className="row">
-                  <h2>Planets</h2>
+              <div className="card-group ">
+                <div className="row text-center">
+                  <h2 className="title-planets fs-1 text-center">PLANETS</h2>
                   {listPlanets.map((planet) => {
                     return (
                       <CardPlanets
@@ -86,11 +95,12 @@ export const Home = () => {
                       />
                     );
                   })}
-                  ;
                 </div>
-                <div className="card-group  overflow-hidden">
+                <div className="card-group ">
                   <div className="row">
-                    <h2>Vehicles</h2>
+                    <h2 className="title-vehicles fs-1 text-center">
+                      VEHICLES
+                    </h2>
                     {listVehicles.map((vehicle) => {
                       return (
                         <CardVehicles
@@ -102,7 +112,6 @@ export const Home = () => {
                         />
                       );
                     })}
-                    ;
                   </div>
                 </div>
               </div>

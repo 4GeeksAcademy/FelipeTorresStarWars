@@ -19,13 +19,15 @@ const getServices = {
             const detailPeople = JSON.parse(localStorage.getItem('detailPeople') || '[]');
             const character = detailPeople.find(item => item.uid == id)
             if (character) {
-                return character.properties
+                return {...character.properties,description:character.description}
             }
             const resquest = await fetch(`https://www.swapi.tech/api/people/${id}`);
             const response = await resquest.json();
             detailPeople.push(response.result)
             localStorage.setItem('detailPeople', JSON.stringify(detailPeople))
-            return response.result.properties;
+            return {...response.result.properties, description:response.result.description};
+
+
         } catch (error) {
             console.log(error);
         }
@@ -51,13 +53,14 @@ const getServices = {
             const detailPlanets = JSON.parse(localStorage.getItem(`detailPlanets`) || `[]`);
             const planet = detailPlanets.find(item => item.uid == id)
             if (planet) {
-                return planet.properties;
+                return {...planet.properties,description:planet.description}
             }
             const request = await fetch(`https://www.swapi.tech/api/planets/${id}`);
             const response = await request.json();
             detailPlanets.push(response.result)
             localStorage.setItem(`detailPlanets`, JSON.stringify(detailPlanets))
-            return response.result.properties;
+            return {...response.result.properties, description:response.result.description};
+
         } catch (error) {
             console.log(error);
 
@@ -83,13 +86,14 @@ const getServices = {
             const detailtVehicles = JSON.parse(localStorage.getItem(`detailtVehicles`) || `[]`);
             const vehicle = detailtVehicles.find(item => item.iud == id)
             if (vehicle) {
-                return vehicle.properties;
+                return {...vehicle.properties,description:vehicle.description}
             }
             const resquest = await fetch(`https://www.swapi.tech/api/vehicles/${id}`);
             const response = await resquest.json();
             detailtVehicles.push(response.result)
             localStorage.setItem(`detailVehicles`, JSON.stringify(detailtVehicles))
-            return response.result.properties;
+            return {...response.result.properties, description:response.result.description};
+
         } catch (error) {
             console.log(error);
         }
